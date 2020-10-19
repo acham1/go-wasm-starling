@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Starling</title>
+    <link rel="shortcut icon" type="image/png" href="/favicon.png" />
     <script src="wasm_exec.js"></script>
 </head>
 
@@ -16,7 +17,7 @@
         ctx.fillText("Loading WASM...", 20, 40);
 
         const go = new Go();
-        WebAssembly.instantiateStreaming(fetch("lib.wasm"), go.importObject).then((result) => {
+        WebAssembly.instantiateStreaming(fetch("starling.wasm"), go.importObject).then((result) => {
             go.run(result.instance);
         });
     </script>
