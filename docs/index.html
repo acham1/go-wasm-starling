@@ -12,14 +12,31 @@
     <canvas id="canvas">Loading...</canvas>
 
     <script>
-        const ctx = document.getElementById("canvas").getContext("2d");
-        ctx.font = "20px Arial";
-        ctx.fillText("Loading WASM...", 20, 40);
-
         const go = new Go();
-        WebAssembly.instantiateStreaming(fetch("starling.wasm"), go.importObject).then((result) => {
-            go.run(result.instance);
-        });
+        const canvas = document.getElementById("canvas");
+        const ctx = canvas.getContext("2d");
+
+        ctx.font = "20px Arial";
+        ctx.fillText("Loading WASM; please wait.", 0, 0);
+
+        WebAssembly.instantiateStreaming(
+            fetch("starling.wasm"),
+            go.importObject,
+        ).then(
+            (result) => {
+                go.run(result.instance);
+                function resizeCanvas() {
+                    canvas.style.width = window.innerWidth + "px";
+                    canvas.style.height = window.innerHeight + "px";
+                    resizeBounds(window.innerWidth, window.innerHeight);
+                };
+
+                window.onresize = resizeCanvas;
+                // Gecko does not resize on load
+                resizeCanvas();
+
+            }
+        );
     </script>
 </body>
 
