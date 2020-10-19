@@ -17,7 +17,7 @@
         const ctx = canvas.getContext("2d");
 
         ctx.font = "20px Arial";
-        ctx.fillText("Loading WASM; please wait.", 0, 0);
+        ctx.fillText("Loading WASM; please wait.", 20, 20);
 
         WebAssembly.instantiateStreaming(
             fetch("starling.wasm"),
