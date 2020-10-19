@@ -5,4 +5,4 @@ build:
 	cp static/* docs/
 
 serve:
-
+	go run cmd/serve.go
