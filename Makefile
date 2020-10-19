@@ -4,5 +4,5 @@ build:
 	cp $$(go env GOROOT)/misc/wasm/wasm_exec.js docs/
 	cp static/* docs/
 
-serve:
+serve: build
 	go run cmd/serve.go
