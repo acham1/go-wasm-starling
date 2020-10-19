@@ -25,16 +25,14 @@
         ).then(
             (result) => {
                 go.run(result.instance);
-                function resizeCanvas() {
+                function handleResize() {
                     canvas.style.width = window.innerWidth + "px";
                     canvas.style.height = window.innerHeight + "px";
                     resizeBounds(window.innerWidth, window.innerHeight);
                 };
 
-                window.onresize = resizeCanvas;
-                // Gecko does not resize on load
+                window.onresize = handleResize;
                 resizeCanvas();
-
             }
         );
     </script>
